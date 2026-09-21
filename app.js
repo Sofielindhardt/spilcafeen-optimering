@@ -31,7 +31,7 @@ function initApp() {
 async function getGames() {
   // Hent data fra URL - await venter på svar før vi går videre
   let response = await fetch(
-    "https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/games.json"
+    "https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/games.json",
   );
 
   allGames = await response.json();
@@ -56,7 +56,7 @@ function displayGame(game) {
       alt = "Poster of "${game.title}"
       class= "game-poster"/>
       <div class= "game-info">
-      <h3>${game.title}</h3>
+      <h2>${game.title}</h2>
       
 
       
@@ -182,7 +182,7 @@ function filterGames() {
   // FILTER 1: Søgetekst - filtrer på spil titel
   if (searchValue) {
     filteredGames = filteredGames.filter((game) =>
-      game.title.toLowerCase().includes(searchValue)
+      game.title.toLowerCase().includes(searchValue),
     );
   }
 
@@ -194,7 +194,7 @@ function filterGames() {
   // FILTER 3: Genre 2 - filtrer på valgt varighed (playtime in minutes)
   if (genre2Value !== "all") {
     filteredGames = filteredGames.filter(
-      (game) => String(game.playtime) === genre2Value
+      (game) => String(game.playtime) === genre2Value,
     );
   }
 
@@ -203,7 +203,7 @@ function filterGames() {
     const num = Number(playersValue);
     filteredGames = filteredGames.filter(
       (game) =>
-        game.players && num >= game.players.min && num <= game.players.max
+        game.players && num >= game.players.min && num <= game.players.max,
     );
   }
 
