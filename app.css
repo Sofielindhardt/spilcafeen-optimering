@@ -219,7 +219,7 @@ footer {
   overflow: hidden;
 
   border: none;
-  padding: 0;
+  padding: 0px;
 
   font: inherit;
   color: inherit;
@@ -229,9 +229,9 @@ footer {
 }
 
 .game-card:hover {
-  transform: translateY(-8px) scale(1.02);
+  transform: scale(1.0);
   box-shadow: var(--shadow-lg);
-  border-color: var(--secondary);
+  background-color: rgb(240, 240, 240);
 }
 
 .game-card:focus {
