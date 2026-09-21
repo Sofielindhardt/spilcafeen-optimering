@@ -36,14 +36,6 @@ async function getGames() {
 
   allGames = await response.json();
 
-  async function getGames() {
-    // Hent alle spildata fra JSON
-    let response = await fetch(
-      "https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/games.json",
-    );
-
-    allGames = await response.json();
-
     // Optimerede lokale billeder
     const localImages = {
       Catan: "img/catan.webp",
@@ -61,7 +53,7 @@ async function getGames() {
       Partners: "img/partners.webp",
     };
 
-    // Erstat kun billeder, vi har optimeret
+    // Erstat kun billeder jeg har optimeret
     for (const game of allGames) {
       if (localImages[game.title]) {
         game.image = localImages[game.title];
@@ -72,9 +64,6 @@ async function getGames() {
     displayGames(allGames);
   }
 
-  populateGenreDropdown(); // Udfyld dropdown med genrer fra data
-  displayGames(allGames); // Vis alle film ved start
-}
 
 // Loop gennem alle film og vis hver enkelt
 for (const game of allGames) {
