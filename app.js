@@ -80,7 +80,7 @@ function displayGame(game) {
       />
       
       <div class= "game-info">
-      <h2>${game.title}</h2>
+      <h3>${game.title}</h3>
       
 
       
@@ -164,7 +164,7 @@ function showGameModal(game) {
   document.querySelector("#dialog-content").innerHTML = /*html*/ `
     <img src="${game.image}" alt="Poster af ${game.title}" class="game-poster">
     <div class="dialog-details">
-      <h2>${game.title} 
+      <h3>${game.title} 
   <p class="game-genre">${
     Array.isArray(game.genre) ? game.genre.join(", ") : game.genre || ""
   }</p>
