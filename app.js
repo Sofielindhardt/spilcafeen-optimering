@@ -36,6 +36,42 @@ async function getGames() {
 
   allGames = await response.json();
 
+  async function getGames() {
+    // Hent alle spildata fra JSON
+    let response = await fetch(
+      "https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/games.json",
+    );
+
+    allGames = await response.json();
+
+    // Optimerede lokale billeder
+    const localImages = {
+      Catan: "img/catan.webp",
+      Monopoly: "img/monopoly.webp",
+      Yatzy: "img/yatzy.webp",
+      Skak: "img/skak.webp",
+      Cluedo: "img/cluedo.webp",
+      Stratego: "img/stratego.webp",
+      Risk: "img/risk.webp",
+      Sequence: "img/sequence.webp",
+      Uno: "img/uno.webp",
+      Ludo: "img/ludo.webp",
+      Matador: "img/matador.webp",
+      Backgammon: "img/backgammon.webp",
+      Partners: "img/partners.webp",
+    };
+
+    // Erstat kun billeder, vi har optimeret
+    for (const game of allGames) {
+      if (localImages[game.title]) {
+        game.image = localImages[game.title];
+      }
+    }
+
+    populateGenreDropdown();
+    displayGames(allGames);
+  }
+
   populateGenreDropdown(); // Udfyld dropdown med genrer fra data
   displayGames(allGames); // Vis alle film ved start
 }
@@ -67,7 +103,7 @@ function displayGame(game) {
       <p class= "game-players">${game.players.min} - ${game.players.max} spillere</p>
       <p class= "game-genre">${game.genre}</p>
       </div>
-  </butt>`;
+  </button>`;
 
   // Tilføj game card til DOM (HTML) - insertAdjacentHTML sætter HTML ind uden at overskrive
   gameList.insertAdjacentHTML("beforeend", gameHTML);
