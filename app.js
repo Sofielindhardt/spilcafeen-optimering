@@ -55,6 +55,8 @@ function displayGame(game) {
     <img src = "${game.image}"
       alt = "Spillet ${game.title}"
       class= "game-poster"
+      width="320"
+      height="180"
       loading="lazy"
       />
       
