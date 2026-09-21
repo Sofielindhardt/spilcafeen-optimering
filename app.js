@@ -54,7 +54,10 @@ function displayGame(game) {
   <article class="game-card" tabindex ="0">
     <img src = "${game.image}"
       alt = "Spillet ${game.title}"
-      class= "game-poster"/>
+      class= "game-poster"
+      loading="lazy"
+      />
+      
       <div class= "game-info">
       <h2>${game.title}</h2>
       
