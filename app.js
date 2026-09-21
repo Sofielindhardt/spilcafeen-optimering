@@ -1,11 +1,13 @@
 "use strict";
 
+
 // ===== APP INITIALISERING =====
 // Start app når DOM er loaded (hele HTML siden er færdig med at indlæse)
 document.addEventListener("DOMContentLoaded", initApp);
 
 // Global variabel til alle film - tilgængelig for alle funktioner
 let allGames = [];
+let scrollPosition = 0;
 
 // #1: Initialize the app - sæt event listeners og hent data
 function initApp() {
@@ -30,6 +32,12 @@ function initApp() {
   document
     .querySelector("#clear-filters")
     .addEventListener("click", clearAllFilters);
+
+    document
+      .querySelector("#game-dialog")
+      .addEventListener("close", function () {
+        window.scrollTo(0, scrollPosition);
+      });
 }
 
 async function getGames() {
@@ -187,7 +195,7 @@ function showGameModal(game) {
       </p>
     </div>
   `;
-
+      scrollPosition = window.scrollY;
   document.querySelector("#game-dialog").showModal();
 }
 
