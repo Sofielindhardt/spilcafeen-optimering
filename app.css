@@ -183,6 +183,15 @@ header h1 {
   letter-spacing: -0.025em;
 }
 
+header h2 {
+  font-size: var(--text-medium);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
 footer {
   background: var(--primary);
   color: var(--text);

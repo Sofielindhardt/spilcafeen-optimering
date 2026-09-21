@@ -221,9 +221,7 @@ function filterGames() {
 
   // Kategori
   if (genre1Value !== "all") {
-    filteredGames = filteredGames.filter(
-      (game) => game.genre === genre1Value,
-    );
+    filteredGames = filteredGames.filter((game) => game.genre === genre1Value);
   }
 
   // Varighed
@@ -239,9 +237,7 @@ function filterGames() {
 
     filteredGames = filteredGames.filter(
       (game) =>
-        game.players &&
-        num >= game.players.min &&
-        num <= game.players.max,
+        game.players && num >= game.players.min && num <= game.players.max,
     );
   }
 
