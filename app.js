@@ -186,7 +186,8 @@ function normalizeText(text) {
   return text
     .toLowerCase()
     .trim()
-    .replace(/\s+/g, " ");
+    .replace(/\s+/g, " ")
+    .replace(/\bseven\b/g, "7");
 }
 
 // Ryd alle filtre
