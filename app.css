@@ -53,7 +53,7 @@
   width: 100%;
   max-width: 400px;
   background: var(--bg-card);
-  color: pink;
+  color: var(--text-light);
   border: 1px solid var(--secondary);
   border-radius: var(--radius);
   padding: 0.75rem 1rem;
@@ -200,6 +200,14 @@ footer {
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+
+    /* Fjern button-standarddesign */
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
 .game-card:hover {
