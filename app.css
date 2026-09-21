@@ -246,7 +246,7 @@ footer {
 }
 
 .game-rating {
-  color: var(--warning);
+  color: var(--text-light);
   font-weight: 600;
   display: flex;
   gap: 0.25rem;
@@ -298,7 +298,7 @@ dialog#game-dialog::backdrop {
 }
 
 #close-dialog:hover {
-  background: var(--error);
+  background: var(--secondary);
   color: white;
   transform: scale(1.1);
 }
@@ -381,7 +381,7 @@ dialog#game-dialog::backdrop {
 }
 
 #dialog-content .movie-rating {
-  color: var(--warning);
+  color: var(--text-light);
   font-weight: 600;
   font-size: 1.125rem;
   display: flex;
