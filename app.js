@@ -88,7 +88,7 @@ function displayGame(game) {
       <div class= "game-info">
       <h3>${game.title}</h3>
       
-      <p class= "game-rating">⭐ ${game.rating}</p>
+      <p class= "game-rating">★ ${game.rating}</p>
       <p class= "game-playtime">Ca. ${game.playtime} min.</p>
       <p class= "game-players">${game.players.min} - ${game.players.max} spillere</p>
       <p class= "game-genre">${game.genre}</p>
@@ -180,7 +180,7 @@ function showGameModal(game) {
         Array.isArray(game.genre) ? game.genre.join(", ") : game.genre || ""
       }</p>
 
-      <p class="game-rating">⭐ ${game.rating}</p>
+      <p class="game-rating">★ ${game.rating}</p>
 
       <p class="game-description">
         ${game.description}
