@@ -494,6 +494,119 @@ dialog#game-dialog::backdrop {
   }
 }
 
+/* =====================
+   MOBIL
+   ===================== */
+@media (max-width: 599px) {
+
+  /* Mere plads under den fixed header */
+  main {
+    max-width: 100%;
+    padding: 7rem 1rem 2rem;
+  }
+
+  /* Header */
+  header {
+    padding: 0.75rem 1rem;
+  }
+
+  header h1 {
+    font-size: 1.75rem;
+  }
+
+  header h2 {
+    font-size: 1rem;
+  }
+
+  /* Søgefelt */
+  .searchbar-container {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .searchbar-container #search-input {
+    width: 100%;
+    max-width: none;
+    min-height: 44px;
+  }
+
+  /* Filtre */
+  .filterbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    width: 100%;
+    padding: 16px 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .filterbar select,
+  .clear-btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+
+    padding: 10px 36px 10px 12px;
+    font-size: 14px;
+  }
+
+  /* Spiloversigten */
+  #game-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 0;
+  }
+
+  /* Cards */
+  .game-card {
+    width: 100%;
+    max-width: none;
+    height: 320px;
+    margin: 0;
+  }
+
+  .game-poster {
+    height: 180px;
+  }
+
+  .game-info {
+    padding: 1.25rem;
+  }
+
+  .game-info h3 {
+    font-size: 1.2rem;
+  }
+
+  .game-rating {
+    right: 1.25rem;
+  }
+
+  /* Dialog */
+  dialog#game-dialog {
+    width: calc(100% - 2rem);
+    max-width: none;
+    max-height: 90vh;
+  }
+
+  #dialog-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 3.5rem 1rem 1rem;
+    text-align: left;
+  }
+
+  #dialog-content img.game-poster {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+}
+
 /* Focus styles for keyboard navigation */
 .game-card:focus-visible,
 #close-dialog:focus-visible {
