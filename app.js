@@ -94,7 +94,7 @@ function displayGame(game) {
       />
       
       <div class= "game-info">
-      <h3>${game.title}</h3>
+      <h2>${game.title}</h2>
       
       <p class= "game-rating">★ ${game.rating}</p>
       <p class= "game-playtime">Ca. ${game.playtime} min.</p>

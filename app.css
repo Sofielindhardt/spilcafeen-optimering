@@ -447,6 +447,17 @@ dialog#game-dialog::backdrop {
   gap: 0.5rem;
 }
 
+.card-image {
+    position: relative;
+}
+
+.rating {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+}
+
 @media (max-width: 768px) {
   #dialog-content .game-rating {
     justify-content: center;
