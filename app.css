@@ -2,8 +2,7 @@
   /* Colors */
   --primary: pink;
   --secondary: white;
-  --primary-light: white;
-  --secondary-light: white;
+  --secondary-dark: rgb(0, 0, 0);
 
   /* Text */
   --text: #121618;
@@ -122,7 +121,18 @@ main {
   font-size: 14px;
   cursor: pointer;
   border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--secondary-dark);
+  transition: var(--transition);
 }
+
+.filterbar select:hover,
+.clear-btn:hover {
+  background: var(--secondary);
+  color: var(--text-light);
+}
+
+ 
 
 
 /* =====================
@@ -144,7 +154,7 @@ header {
 }
 
 header h1 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: var(--text-large);
   font-weight: 700;
   letter-spacing: -0.025em;
 }
@@ -329,7 +339,7 @@ dialog#game-dialog::backdrop {
 }
 
 #dialog-content h2 {
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-size: var(--text-medium);
   font-weight: 700;
   color: var(--text);
   line-height: 1.2;
