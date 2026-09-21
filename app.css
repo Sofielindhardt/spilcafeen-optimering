@@ -171,7 +171,6 @@ header {
   padding: 1rem 0;
   text-align: center;
 
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -472,7 +471,7 @@ dialog#game-dialog::backdrop {
 }
 
 /* =====================
-   RESPONSIVE & ACCESSIBILITY
+   RESPONSIVE
    ===================== */
 @media (min-width: 600px) {
   #game-list {
@@ -511,11 +510,11 @@ dialog#game-dialog::backdrop {
   }
 
   header h1 {
-    font-size: 1.75rem;
+    font-size: var(--text-large);
   }
 
   header h2 {
-    font-size: 1rem;
+    font-size: var(--text-small);
   }
 
   /* Søgefelt */
@@ -585,6 +584,112 @@ dialog#game-dialog::backdrop {
   }
 
   /* Dialog */
+  dialog#game-dialog {
+    width: calc(100% - 2rem);
+    max-width: none;
+    max-height: 90vh;
+  }
+
+  #dialog-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 3.5rem 1rem 1rem;
+    text-align: left;
+  }
+
+  #dialog-content img.game-poster {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+}
+
+/* =====================
+   MOBIL - 390px
+   ===================== */
+@media (max-width: 390px) {
+
+  main {
+    max-width: 100%;
+    padding: 7rem 1rem 2rem;
+  }
+
+  header {
+    padding: 0.75rem 1rem;
+  }
+
+  header h1 {
+    font-size: var(--text-large);
+  }
+
+  header h2 {
+    font-size: var(--text-small);
+  }
+
+  .searchbar-container {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .searchbar-container #search-input {
+    width: 100%;
+    max-width: none;
+    min-height: 44px;
+  }
+
+  .filterbar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+
+    width: 80%;
+    padding: 16px 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .filterbar select,
+  .clear-btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+
+    padding: 10px 36px 10px 12px;
+    font-size: 14px;
+  }
+
+  #game-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 0;
+  }
+
+  .game-card {
+    width: 100%;
+    max-width: none;
+    height: 320px;
+    margin: 0;
+  }
+
+  .game-poster {
+    height: 180px;
+  }
+
+  .game-info {
+    padding: 1.25rem;
+  }
+
+  .game-info h3 {
+    font-size: 1.2rem;
+  }
+
+  .game-rating {
+    right: 1.25rem;
+  }
+
   dialog#game-dialog {
     width: calc(100% - 2rem);
     max-width: none;
