@@ -23,9 +23,9 @@ function initApp() {
   document
     .querySelector("#players-select")
     .addEventListener("change", filterGames);
-    document
-      .querySelector("#clear-filters")
-      .addEventListener("click", clearAllFilters);
+  document
+    .querySelector("#clear-filters")
+    .addEventListener("click", clearAllFilters);
 }
 
 async function getGames() {
@@ -36,34 +36,33 @@ async function getGames() {
 
   allGames = await response.json();
 
-    // Optimerede lokale billeder
-    const localImages = {
-      Catan: "img/catan.webp",
-      Monopoly: "img/monopoly.webp",
-      Yatzy: "img/yatzy.webp",
-      Skak: "img/skak.webp",
-      Cluedo: "img/cluedo.webp",
-      Stratego: "img/stratego.webp",
-      Risk: "img/risk.webp",
-      Sequence: "img/sequence.webp",
-      Uno: "img/uno.webp",
-      Ludo: "img/ludo.webp",
-      Matador: "img/matador.webp",
-      Backgammon: "img/backgammon.webp",
-      Partners: "img/partners.webp",
-    };
+  // Optimerede lokale billeder
+  const localImages = {
+    Catan: "img/catan.webp",
+    Monopoly: "img/monopoly.webp",
+    Yatzy: "img/yatzy.webp",
+    Skak: "img/skak.webp",
+    Cluedo: "img/cluedo.webp",
+    Stratego: "img/stratego.webp",
+    Risk: "img/risk.webp",
+    Sequence: "img/sequence.webp",
+    Uno: "img/uno.webp",
+    Ludo: "img/ludo.webp",
+    Matador: "img/matador.webp",
+    Backgammon: "img/backgammon.webp",
+    Partners: "img/partners.webp",
+  };
 
-    // Erstat kun billeder jeg har optimeret
-    for (const game of allGames) {
-      if (localImages[game.title]) {
-        game.image = localImages[game.title];
-      }
+  // Erstat kun billeder jeg har optimeret
+  for (const game of allGames) {
+    if (localImages[game.title]) {
+      game.image = localImages[game.title];
     }
-
-    populateGenreDropdown();
-    displayGames(allGames);
   }
 
+  populateGenreDropdown();
+  displayGames(allGames);
+}
 
 // Loop gennem alle film og vis hver enkelt
 for (const game of allGames) {
@@ -181,56 +180,67 @@ function showGameModal(game) {
 }
 
 // ===== FILTER FUNKTIONER =====
-// #7: Ryd alle filtre - reset alle filter felter til tomme værdier
+
+// Gør søgetekst mere robust
+function normalizeText(text) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, " ");
+}
+
+// Ryd alle filtre
 function clearAllFilters() {
-  // Ryd alle input felter - sæt value til tom string eller standard værdi
   document.querySelector("#search-input").value = "";
   document.querySelector("#players-select").value = "all";
   document.querySelector("#genre-select2").value = "all";
   document.querySelector("#genre-select1").value = "all";
-  // Hvis du har flere filtre, tilføj dem her
 
-  // Kør filtrering igen (vil vise alle film da alle filtre er ryddet)
   filterGames();
 }
 
-// #8: Komplet filtrering med alle funktioner - den vigtigste funktion!
+// Filtrer spillene
 function filterGames() {
-  // Hent alle filter værdier fra input felterne
-  const searchValue = document
-    .querySelector("#search-input")
-    .value.toLowerCase();
+  const searchValue = normalizeText(
+    document.querySelector("#search-input").value,
+  );
+
   const genre1Value = document.querySelector("#genre-select1").value;
   const genre2Value = document.querySelector("#genre-select2").value;
-  const playersValue = document.querySelector("#players-select")?.value;
+  const playersValue = document.querySelector("#players-select").value;
 
   let filteredGames = allGames;
 
-  // FILTER 1: Søgetekst - filtrer på spil titel
+  // Søgning
   if (searchValue) {
     filteredGames = filteredGames.filter((game) =>
-      game.title.toLowerCase().includes(searchValue),
+      normalizeText(game.title).includes(searchValue),
     );
   }
 
-  // FILTER 2: Genre 1 - filtrer på valgt genre (string match)
+  // Kategori
   if (genre1Value !== "all") {
-    filteredGames = filteredGames.filter((game) => game.genre === genre1Value);
+    filteredGames = filteredGames.filter(
+      (game) => game.genre === genre1Value,
+    );
   }
 
-  // FILTER 3: Genre 2 - filtrer på valgt varighed (playtime in minutes)
+  // Varighed
   if (genre2Value !== "all") {
     filteredGames = filteredGames.filter(
       (game) => String(game.playtime) === genre2Value,
     );
   }
 
-  // FILTER 4: Players
-  if (playersValue && playersValue !== "all") {
+  // Antal spillere
+  if (playersValue !== "all") {
     const num = Number(playersValue);
+
     filteredGames = filteredGames.filter(
       (game) =>
-        game.players && num >= game.players.min && num <= game.players.max,
+        game.players &&
+        num >= game.players.min &&
+        num <= game.players.max,
     );
   }
 
