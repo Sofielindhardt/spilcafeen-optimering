@@ -82,6 +82,7 @@ function displayGame(game) {
     <img src = "${game.image}"
       alt = "Spillet ${game.title}"
       class= "game-poster"
+      loading="${gameList.children.length < 4 ? "eager" : "lazy"}"
       />
       
       <div class= "game-info">
