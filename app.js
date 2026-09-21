@@ -26,6 +26,11 @@ function initApp() {
   document
     .querySelector("#clear-filters")
     .addEventListener("click", clearAllFilters);
+    document
+      .querySelector("#close-dialog")
+      .addEventListener("click", function () {
+        document.querySelector("#game-dialog").close();
+      });
 }
 
 async function getGames() {
@@ -71,47 +76,55 @@ for (const game of allGames) {
 
 // #4: Render a single game card and add event listeners - lav et spil kort
 function displayGame(game) {
-  const gameList = document.querySelector("#game-list"); // Find container til film
+  const gameList = document.querySelector("#game-list");
 
-  // Byg HTML struktur dynamisk - template literal med ${} til at indsætte data
   const gameHTML = `
-  <button class="game-card" type="button">
-    <img src = "${game.image}"
-      alt = "Spillet ${game.title}"
-      class= "game-poster"
+    <article class="game-card">
+      <img
+        src="${game.image}"
+        alt="${game.title} brætspil"
+        class="game-poster"
+        loading="lazy"
       />
-      
-      <div class= "game-info">
-      <h3>${game.title}</h3>
-      
 
-      
-      <p class= "game-rating">⭐ ${game.rating}</p>
-      <p class= "game-playtime">Ca. ${game.playtime} min.</p>
-      <p class= "game-players">${game.players.min} - ${game.players.max} spillere</p>
-      <p class= "game-genre">${game.genre}</p>
+      <div class="game-info">
+        <h2>${game.title}</h2>
+
+        <p class="game-rating">⭐ ${game.rating}</p>
+        <p class="game-playtime">
+          Ca. ${game.playtime} min.
+        </p>
+
+        <p class="game-players">
+          ${game.players.min} - ${game.players.max} spillere
+        </p>
+
+        <p class="game-genre">
+          ${game.genre}
+        </p>
+
+        <button
+          class="game-open-btn"
+          type="button"
+          aria-label="Se detaljer om ${game.title}"
+        >
+          Se detaljer
+        </button>
       </div>
-  </button>`;
+    </article>
+  `;
 
-  // Tilføj game card til DOM (HTML) - insertAdjacentHTML sætter HTML ind uden at overskrive
   gameList.insertAdjacentHTML("beforeend", gameHTML);
 
-  // Find det kort vi lige har tilføjet (det sidste element)
   const newCard = gameList.lastElementChild;
 
-  // Tilføj click event til kortet - når brugeren klikker på kortet
-  newCard.addEventListener("click", function () {
-    showGameModal(game); //
-  });
-
-  // Tilføj keyboard support (Enter og mellemrum) for tilgængelighed
-  newCard.addEventListener("keydown", function (event) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault(); // Forhindre scroll ved mellemrum
-      showGameModal(game); //
-    }
-  });
+  newCard
+    .querySelector(".game-open-btn")
+    .addEventListener("click", function () {
+      showGameModal(game);
+    });
 }
+
 
 // ===== DROPDOWN OG MODAL FUNKTIONER =====
 // #5: Udfyld genre-dropdown med alle unikke genrer fra data
@@ -160,22 +173,31 @@ function populateGenreDropdown() {
   });
 }
 
-// #6: Vis game i modal dialog - popup vindue med spil detaljer
 function showGameModal(game) {
-  // Find modal indhold container og byg HTML struktur dynamisk
-  document.querySelector("#dialog-content").innerHTML = /*html*/ `
-    <img src="${game.image}" alt="Poster af ${game.title}" class="game-poster">
+  document.querySelector("#dialog-content").innerHTML = `
+    <img
+      src="${game.image}"
+      alt="${game.title} brætspil"
+      class="game-poster"
+    >
+
     <div class="dialog-details">
-      <h3>${game.title} 
-  <p class="game-genre">${
-    Array.isArray(game.genre) ? game.genre.join(", ") : game.genre || ""
-  }</p>
-      <p class="game-rating">⭐ ${game.rating}</p>
-      <p class="game-description">${game.description}</p>
+      <h2 id="dialog-title">${game.title}</h2>
+
+      <p class="game-genre">
+        ${Array.isArray(game.genre) ? game.genre.join(", ") : game.genre || ""}
+      </p>
+
+      <p class="game-rating">
+        ⭐ ${game.rating}
+      </p>
+
+      <p class="game-description">
+        ${game.description}
+      </p>
     </div>
   `;
 
-  // Åbn modalen - showModal() er en built-in browser funktion
   document.querySelector("#game-dialog").showModal();
 }
 
