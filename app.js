@@ -51,7 +51,7 @@ function displayGame(game) {
 
   // Byg HTML struktur dynamisk - template literal med ${} til at indsætte data
   const gameHTML = `
-  <article class="game-card" tabindex ="0">
+  <button class="game-card" type="button">
     <img src = "${game.image}"
       alt = "Spillet ${game.title}"
       class= "game-poster"
@@ -67,7 +67,7 @@ function displayGame(game) {
       <p class= "game-players">${game.players.min} - ${game.players.max} spillere</p>
       <p class= "game-genre">${game.genre}</p>
       </div>
-  </article>`;
+  </butt>`;
 
   // Tilføj game card til DOM (HTML) - insertAdjacentHTML sætter HTML ind uden at overskrive
   gameList.insertAdjacentHTML("beforeend", gameHTML);
