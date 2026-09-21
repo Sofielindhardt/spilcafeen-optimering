@@ -9,6 +9,12 @@
   --text: #121618;
   --text-light: #5b090a;
 
+  /* text størrelse */
+  --text-large: 40px;
+  --text-medium: 20px;
+  --text-small: 16px;
+ 
+
   /* Backgrounds */
   --bg: #f4d6ef;
   --bg-card: white;
