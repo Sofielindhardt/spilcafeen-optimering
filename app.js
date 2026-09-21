@@ -14,23 +14,22 @@ function initApp() {
   document
     .querySelector("#search-input")
     .addEventListener("input", filterGames);
+
   document
     .querySelector("#genre-select1")
     .addEventListener("change", filterGames);
+
   document
     .querySelector("#genre-select2")
     .addEventListener("change", filterGames);
+
   document
     .querySelector("#players-select")
     .addEventListener("change", filterGames);
+
   document
     .querySelector("#clear-filters")
     .addEventListener("click", clearAllFilters);
-    document
-      .querySelector("#close-dialog")
-      .addEventListener("click", function () {
-        document.querySelector("#game-dialog").close();
-      });
 }
 
 async function getGames() {
@@ -71,7 +70,7 @@ async function getGames() {
 
 // Loop gennem alle film og vis hver enkelt
 for (const game of allGames) {
-  displayGame(game); // Kald displayMovie for hver film
+  displayGame(game);
 }
 
 // #4: Render a single game card and add event listeners - lav et spil kort
@@ -79,59 +78,44 @@ function displayGame(game) {
   const gameList = document.querySelector("#game-list");
 
   const gameHTML = `
-    <article class="game-card">
-      <img
-        src="${game.image}"
-        alt="${game.title} brætspil"
-        class="game-poster"
-        loading="lazy"
+  <button class="game-card" type="button">
+    <img src = "${game.image}"
+      alt = "Spillet ${game.title}"
+      class= "game-poster"
       />
-
-      <div class="game-info">
-        <h2>${game.title}</h2>
-
-        <p class="game-rating">⭐ ${game.rating}</p>
-        <p class="game-playtime">
-          Ca. ${game.playtime} min.
-        </p>
-
-        <p class="game-players">
-          ${game.players.min} - ${game.players.max} spillere
-        </p>
-
-        <p class="game-genre">
-          ${game.genre}
-        </p>
-
-        <button
-          class="game-open-btn"
-          type="button"
-          aria-label="Se detaljer om ${game.title}"
-        >
-          Se detaljer
-        </button>
+      
+      <div class= "game-info">
+      <h3>${game.title}</h3>
+      
+      <p class= "game-rating">⭐ ${game.rating}</p>
+      <p class= "game-playtime">Ca. ${game.playtime} min.</p>
+      <p class= "game-players">${game.players.min} - ${game.players.max} spillere</p>
+      <p class= "game-genre">${game.genre}</p>
       </div>
-    </article>
-  `;
+  </button>`;
 
   gameList.insertAdjacentHTML("beforeend", gameHTML);
 
   const newCard = gameList.lastElementChild;
 
-  newCard
-    .querySelector(".game-open-btn")
-    .addEventListener("click", function () {
+  newCard.addEventListener("click", function () {
+    showGameModal(game);
+  });
+
+  newCard.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
       showGameModal(game);
-    });
+    }
+  });
 }
 
-
 // ===== DROPDOWN OG MODAL FUNKTIONER =====
-// #5: Udfyld genre-dropdown med alle unikke genrer fra data
 function populateGenreDropdown() {
   // Players dropdown
   const playersSelect = document.querySelector("#players-select");
   const playerCounts = new Set();
+
   for (const game of allGames) {
     if (
       game.players &&
@@ -143,18 +127,25 @@ function populateGenreDropdown() {
       }
     }
   }
+
   const sortedPlayers = Array.from(playerCounts).sort((a, b) => a - b);
+
   playersSelect.innerHTML = '<option value="all">Antal spillere</option>';
+
   sortedPlayers.forEach((num) => {
     playersSelect.innerHTML += `<option value="${num}">${num} spillere</option>`;
   });
+
   // Genre dropdown
   const genreSelect = document.querySelector("#genre-select1");
   const genres = new Set();
+
   for (const game of allGames) {
     if (game.genre) genres.add(game.genre);
   }
+
   genreSelect.innerHTML = '<option value="all">Kategori</option>';
+
   genres.forEach((genre) => {
     genreSelect.innerHTML += `<option value="${genre}">${genre}</option>`;
   });
@@ -162,35 +153,33 @@ function populateGenreDropdown() {
   // Playtime dropdown
   const playtimeSelect = document.querySelector("#genre-select2");
   const playtimes = new Set();
+
   for (const game of allGames) {
     if (game.playtime) playtimes.add(game.playtime);
   }
-  // Sort playtimes numerically
+
   const sortedPlaytimes = Array.from(playtimes).sort((a, b) => a - b);
+
   playtimeSelect.innerHTML = '<option value="all">Varighed</option>';
+
   sortedPlaytimes.forEach((time) => {
     playtimeSelect.innerHTML += `<option value="${time}">${time} min.</option>`;
   });
 }
 
+// #6: Vis game i modal dialog
 function showGameModal(game) {
-  document.querySelector("#dialog-content").innerHTML = `
-    <img
-      src="${game.image}"
-      alt="${game.title} brætspil"
-      class="game-poster"
-    >
+  document.querySelector("#dialog-content").innerHTML = /*html*/ `
+    <img src="${game.image}" alt="Poster af ${game.title}" class="game-poster">
 
     <div class="dialog-details">
-      <h2 id="dialog-title">${game.title}</h2>
+      <h3>${game.title} 
 
-      <p class="game-genre">
-        ${Array.isArray(game.genre) ? game.genre.join(", ") : game.genre || ""}
-      </p>
+      <p class="game-genre">${
+        Array.isArray(game.genre) ? game.genre.join(", ") : game.genre || ""
+      }</p>
 
-      <p class="game-rating">
-        ⭐ ${game.rating}
-      </p>
+      <p class="game-rating">⭐ ${game.rating}</p>
 
       <p class="game-description">
         ${game.description}
@@ -203,7 +192,6 @@ function showGameModal(game) {
 
 // ===== FILTER FUNKTIONER =====
 
-// Gør søgetekst mere robust
 function normalizeText(text) {
   return text
     .toLowerCase()
@@ -212,7 +200,6 @@ function normalizeText(text) {
     .replace(/\bseven\b/g, "7");
 }
 
-// Ryd alle filtre
 function clearAllFilters() {
   document.querySelector("#search-input").value = "";
   document.querySelector("#players-select").value = "all";
@@ -222,14 +209,15 @@ function clearAllFilters() {
   filterGames();
 }
 
-// Filtrer spillene
 function filterGames() {
   const searchValue = normalizeText(
     document.querySelector("#search-input").value,
   );
 
   const genre1Value = document.querySelector("#genre-select1").value;
+
   const genre2Value = document.querySelector("#genre-select2").value;
+
   const playersValue = document.querySelector("#players-select").value;
 
   let filteredGames = allGames;
@@ -266,15 +254,18 @@ function filterGames() {
   displayGames(filteredGames);
 }
 
-// RENDER GAME LIST (called after filtering or loading data)
 function displayGames(games) {
   const gameList = document.querySelector("#game-list");
+
   gameList.innerHTML = "";
+
   if (!games || games.length === 0) {
     gameList.innerHTML =
       '<p class="no-results">Ingen spil matchede dine filtre </p>';
+
     return;
   }
+
   for (const game of games) {
     displayGame(game);
   }
