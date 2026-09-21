@@ -56,8 +56,7 @@ function displayGame(game) {
       alt = "Spillet ${game.title}"
       class= "game-poster"
       width="320"
-      height="180"
-      loading="lazy"
+height="180"
       />
       
       <div class= "game-info">
