@@ -120,12 +120,44 @@ main {
   font-size: 14px;
   cursor: pointer;
 
-  border-radius: 10px;
+  border-radius: 14px;
   background: var(--bg-card);
   border: 1px solid var(--secondary-dark);
   transition: var(--transition);
 }
 
+.filterbar select {
+  appearance: none;
+  -webkit-appearance: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='10' viewBox='0 0 16 10'%3E%3Cpath d='M0 0H16L8 10Z' fill='%23D5D2D2'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 14px 10px;
+}
+
+.clear-btn {
+  min-height: 42px;
+  padding: 0 18px;
+
+  background-color: rgb(240, 240, 240);
+
+  border: 1px solid #5b090a;
+  border-radius: 12px;
+
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.filterbar select:hover,
+.clear-btn:hover,
+#close-dialog:hover {
+  background-color: rgb(205, 205, 205);
+}
 
 /* =====================
    HEADER & FOOTER
