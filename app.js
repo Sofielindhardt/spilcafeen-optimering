@@ -23,6 +23,9 @@ function initApp() {
   document
     .querySelector("#players-select")
     .addEventListener("change", filterGames);
+    document
+      .querySelector("#clear-filters")
+      .addEventListener("click", clearAllFilters);
 }
 
 async function getGames() {
