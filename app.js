@@ -53,7 +53,7 @@ function displayGame(game) {
   const gameHTML = `
   <article class="game-card" tabindex ="0">
     <img src = "${game.image}"
-      alt = "Poster of "${game.title}"
+      alt = "Spillet ${game.title}"
       class= "game-poster"/>
       <div class= "game-info">
       <h2>${game.title}</h2>
