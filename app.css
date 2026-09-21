@@ -56,7 +56,7 @@
   border: 1px solid var(--secondary);
   border-radius: var(--radius);
   padding: 0.75rem 1rem;
-  font-size: 1rem;
+  font-size: var(--text-small);
   transition: var(--transition);
   box-shadow: var(--shadow);
 }
@@ -118,7 +118,7 @@ main {
 .clear-btn {
   min-height: 34px;
   padding: 12px 40px 12px 16px;
-  font-size: 14px;
+  font-size: var(--text-small);
   cursor: pointer;
 
   border-radius: 14px;
@@ -147,7 +147,7 @@ main {
   border: 1px solid #5b090a;
   border-radius: 12px;
 
-  font-size: 14px;
+  font-size: var(--text-small);
   font-weight: 600;
   cursor: pointer;
 
@@ -488,9 +488,6 @@ dialog#game-dialog::backdrop {
     margin: 0 auto;
   }
 
-  header h1 {
-    font-size: 1.75rem;
-  }
 }
 
 /* =====================
@@ -514,7 +511,7 @@ dialog#game-dialog::backdrop {
   }
 
   header h2 {
-    font-size: var(--text-small);
+    font-size: var(--text-medium);
   }
 
   /* Søgefelt */
@@ -613,7 +610,7 @@ dialog#game-dialog::backdrop {
 
   main {
     max-width: 100%;
-    padding: 7rem 1rem 2rem;
+    padding: 3rem 2rem 3rem;
   }
 
   header {
