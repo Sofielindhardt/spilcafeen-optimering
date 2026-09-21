@@ -105,50 +105,36 @@ main {
   justify-content: center;
   margin-bottom: 2rem;
   flex-wrap: wrap;
+
   width: 100vw;
-  max-width: none;
   margin-left: 50%;
   transform: translateX(-50%);
+
   padding: 1.5rem 2vw;
-  box-sizing: border-box;
   background: rgb(255, 232, 235);
   border-radius: var(--radius);
 }
 
-#search-input {
-  flex: 1;
-  min-width: 120px;
-}
-
-#search-input,
-#genre-select,
-#sort-select {
-  background: var(--bg-card);
-  color: var(--text);
-  border: 1px solid var(--secondary);
-  border-radius: var(--radius);
+/* Alle dropdowns + ryd filtre */
+.filterbar select,
+.clear-btn {
+  min-height: 44px;
   padding: 0.75rem 1rem;
   font-size: 1rem;
-  transition: var(--transition);
-  box-shadow: var(--shadow);
-}
-
-#search-input:focus,
-#genre-select:focus,
-#sort-select:focus {
-  outline: 2px solid var(--secondary);
-  border-color: var(--secondary);
-}
-
-#search-input::placeholder {
-  color: var(--text-light);
-  opacity: 1;
-}
-
-#genre-select,
-#sort-select {
-  min-width: 160px;
   cursor: pointer;
+
+  background: var(--bg-card);
+  color: var(--text);
+
+  border: 1px solid #5b090a;
+  border-radius: var(--radius);
+}
+
+/* Focus ved tastatur */
+.filterbar select:focus-visible,
+.clear-btn:focus-visible {
+  outline: 3px solid #5b090a;
+  outline-offset: 2px;
 }
 
 /* =====================
