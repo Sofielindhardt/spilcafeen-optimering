@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="da">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Project Template" />
-    <link rel="stylesheet" href="app.css" />
-    <link rel="icon" href="img/favicon.ico" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="Find brætspil hos Spilcaféen efter antal spillere, varighed og kategori"
+    >
+
+    <link rel="stylesheet" href="app.css">
+    <link rel="icon" href="img/favicon.ico">
 
     <title>Spiloversigt</title>
   </head>
@@ -20,11 +24,15 @@
       <!-- Search Bar -->
       <div class="searchbar-container">
         <label for="search-input">Søg efter spil</label>
-        <input id="search-input" type="search" placeholder="Søg spil..." />
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Søg spil..."
+        >
       </div>
 
       <!-- Filter Bar -->
-      <section class="filterbar">
+      <div class="filterbar">
         <label for="players-select">Antal spillere</label>
         <select id="players-select"></select>
 
@@ -34,22 +42,28 @@
         <label for="genre-select1">Genre</label>
         <select id="genre-select1"></select>
 
-        <button id="clear-filters" class="clear-btn">
+        <button
+          id="clear-filters"
+          class="clear-btn"
+          type="button"
+        >
           <span class="btn-icon"></span>
           <span class="btn-text">Ryd filtre</span>
         </button>
-      </section>
+      </div>
 
       <!-- Game List -->
-      <section id="game-list">
+      <div id="game-list">
         <!-- Game cards will be rendered here by JavaScript -->
-      </section>
+      </div>
     </main>
 
     <dialog id="game-dialog">
       <div id="dialog-content"></div>
+
       <button
         id="close-dialog"
+        type="button"
         onclick="document.getElementById('game-dialog').close()"
       >
         Luk
