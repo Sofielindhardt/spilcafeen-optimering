@@ -1,10 +1,13 @@
 :root {
   /* Colors */
-  --secondary-dark: #000000;
+  --primary: pink;
+  --secondary: white;
+  --secondary-dark: rgb(0, 0, 0);
   --brand: #5b090a;
 
   /* Text */
   --text: #000000;
+  --text-light: #5b090a;
 
   /* Text sizes */
   --text-large: 40px;
@@ -15,6 +18,11 @@
   --bg: rgb(255, 232, 235);
   --bg-card: white;
   --secondary-light: rgb(255, 232, 235);
+
+  /* Semantic */
+  --success: #34a853;
+  --warning: #fbc02d;
+  --error: #ea4335;
 
   /* Effects */
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
