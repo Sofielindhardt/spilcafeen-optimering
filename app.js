@@ -97,8 +97,9 @@ function displayGame(game) {
       <h2>${game.title}</h2>
       
       <p class= "game-rating">★ ${game.rating}</p>
-      <p class= "game-playtime">Ca. ${game.playtime} min.</p>
-      <p class= "game-players">${game.players.min} - ${game.players.max} spillere</p>
+     <p class="game-meta">
+      Ca. ${game.playtime} min, ${game.players.min} - ${game.players.max} spillere
+      </p>
       <p class= "game-genre">${game.genre}</p>
       </div>
   </button>`;

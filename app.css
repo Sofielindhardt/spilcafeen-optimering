@@ -293,16 +293,29 @@ main {
 .game-card:hover .game-poster {
   transform: scale(1.03);
 }
-
 .game-info {
-  position: relative;
   flex: 1;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "title title"
+    "meta meta"
+    "genre rating";
+
+  column-gap: 1rem;
+  row-gap: 0.2rem;
 
   min-height: 140px;
   padding: 1.25rem 1.5rem;
 }
 
-.game-info h3 {
+
+/* TITEL */
+
+.game-info h2 {
+  grid-area: title;
+
   margin: 0 0 0.15rem;
 
   color: var(--text);
@@ -311,21 +324,50 @@ main {
   line-height: 1.25;
 }
 
-.game-info p {
+
+/* VARIGHED + SPILLERE */
+
+.game-meta {
+  grid-area: meta;
+
   margin: 0;
+
+  font-size: 0.95rem;
 }
 
-.game-genre {
-  margin-bottom: 0.75rem;
 
-  color: black;
-  font-size: 0.9rem;
+/* KATEGORI */
+
+.game-card .game-genre {
+  grid-area: genre;
+
+  align-self: end;
+  justify-self: start;
+
+  position: static;
+
+  margin: 0;
+  padding: 0.15rem 0.5rem;
+
+  background: var(--secondary-light);
+  color: var(--text);
+
+  border-radius: 6px;
+
+  font-size: 0.8rem;
+  font-weight: 600;
 }
+
+
+/* RATING */
 
 .game-rating {
-  position: absolute;
-  right: 1.5rem;
-  bottom: 1.15rem;
+  grid-area: rating;
+
+  align-self: end;
+  justify-self: end;
+
+  position: static;
 
   display: flex;
   align-items: center;
@@ -336,6 +378,8 @@ main {
   color: var(--brand);
   font-weight: 700;
 }
+
+
 
 /* =====================
    DIALOG / UNDERSIDE
