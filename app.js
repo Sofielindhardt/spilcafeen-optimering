@@ -182,7 +182,7 @@ function showGameModal(game) {
     <img src="${game.image}" alt="Poster af ${game.title}" class="game-poster">
 
     <div class="dialog-details">
-      <h3>${game.title} 
+      <h2>${game.title}</h2>
 
       <p class="game-genre">${
         Array.isArray(game.genre) ? game.genre.join(", ") : game.genre || ""

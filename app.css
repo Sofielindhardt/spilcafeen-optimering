@@ -3,19 +3,21 @@
   --primary: pink;
   --secondary: white;
   --secondary-dark: rgb(0, 0, 0);
+  --brand: #5b090a;
 
   /* Text */
   --text: #121618;
   --text-light: #5b090a;
 
-  /* text størrelse */
+  /* Text sizes */
   --text-large: 40px;
   --text-medium: 20px;
   --text-small: 16px;
 
   /* Backgrounds */
-  --bg: #f4d6ef;
+  --bg: rgb(255, 232, 235);
   --bg-card: white;
+  --secondary-light: rgb(255, 232, 235);
 
   /* Semantic */
   --success: #34a853;
@@ -30,7 +32,7 @@
 }
 
 /* =====================
-   GLOBAL STYLES
+   GLOBAL
    ===================== */
 * {
   box-sizing: border-box;
@@ -38,142 +40,43 @@
   padding: 0;
 }
 
-/* =====================
-   SEARCHBAR CONTAINER
-   ===================== */
-.searchbar-container {
+html {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.searchbar-container #search-input {
-  width: 100%;
-  max-width: 400px;
-  background: var(--bg-card);
-  color: var(--text-light);
-  border: 1px solid var(--secondary);
-  border-radius: var(--radius);
-  padding: 0.75rem 1rem;
-  font-size: var(--text-small);
-  transition: var(--transition);
-  box-shadow: var(--shadow);
-}
-
-.searchbar-container #search-input:focus {
-  outline: 2px solid var(--secondary);
-  border-color: var(--secondary);
-}
-
-/* =====================
-   GLOBAL STYLES
-   ===================== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  overflow-x: hidden;
 }
 
 body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 
   font-size: 1rem;
   line-height: 1.6;
-  background: rgb(255, 232, 235);
+  background: var(--bg);
   color: var(--text);
-  min-height: 100vh;
+}
+
+button,
+input,
+select {
+  font: inherit;
 }
 
 /* =====================
-   LAYOUT
-   ===================== */
-main {
-  max-width: min(1400px, 95vw);
-  margin: 0 auto;
-   padding: 4rem 1rem 2rem;
-}
-
-/* =====================
-   FILTERBAR
-   ===================== */
-.filterbar {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  width: 100%;
-  margin: 0 auto 32px;
-  padding: 24px 20px;
-
-  box-sizing: border-box;
-  background: rgb(255, 232, 235);
-  border-radius: var(--radius);
-}
-
-.filterbar select,
-.clear-btn {
-  min-height: 34px;
-  padding: 12px 40px 12px 16px;
-  font-size: var(--text-small);
-  cursor: pointer;
-
-  border-radius: 14px;
-  background: var(--bg-card);
-  border: 1px solid var(--secondary-dark);
-  transition: var(--transition);
-}
-
-.filterbar select {
-  appearance: none;
-  -webkit-appearance: none;
-
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='10' viewBox='0 0 16 10'%3E%3Cpath d='M0 0H16L8 10Z' fill='%23D5D2D2'/%3E%3C/svg%3E");
-
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-  background-size: 14px 10px;
-}
-
-.clear-btn {
-  min-height: 42px;
-  padding: 0 18px;
-
-  background-color: rgb(240, 240, 240);
-
-  border: 1px solid #5b090a;
-  border-radius: 12px;
-
-  font-size: var(--text-small);
-  font-weight: 600;
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-.filterbar select:hover,
-.clear-btn:hover,
-#close-dialog:hover {
-  background-color: rgb(205, 205, 205);
-}
-
-/* =====================
-   HEADER & FOOTER
+   HEADER
    ===================== */
 header {
-  background: rgb(255, 232, 235);
-  backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(172, 198, 201, 0.2);
-  color: var(--text);
-  padding: 1rem 0;
-  text-align: center;
+  width: 100%;
+  padding: 1rem;
 
-  top: 0;
-  left: 0;
-  right: 0;
+  background: var(--bg);
+  color: var(--text);
+  border-bottom: 1px solid rgba(172, 198, 201, 0.2);
+
+  text-align: center;
 
   z-index: 1000;
   transition: var(--transition);
@@ -182,585 +85,277 @@ header {
 header h1 {
   font-size: var(--text-large);
   font-weight: 700;
+  line-height: 1.15;
   letter-spacing: -0.025em;
 }
 
 header h2 {
-  font-size: var(--text-medium);
-  font-weight: 400;
-  letter-spacing: -0.025em;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+
+  font-size: var(--text-medium);
+  font-weight: 400;
   font-style: italic;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
 }
 
-footer {
-  background: var(--primary);
+/* =====================
+   MAIN LAYOUT
+   ===================== */
+main {
+  width: 100%;
+  max-width: min(1400px, 95vw);
+  margin: 0 auto;
+  padding: 4rem 1rem 2rem;
+}
+
+/* =====================
+   SEARCH
+   ===================== */
+.searchbar-container {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.searchbar-container #search-input {
+  width: 100%;
+  max-width: 400px;
+  min-height: 44px;
+
+  padding: 0.75rem 1rem;
+
+  background: var(--bg-card);
   color: var(--text);
-  text-align: center;
-  padding: 2rem 1rem;
-  margin-top: 4rem;
+
+  border: 1px solid white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+
+  font-size: var(--text-small);
+  transition: var(--transition);
+}
+
+.searchbar-container #search-input::placeholder {
+  color: #777;
+}
+
+.searchbar-container #search-input:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+  border-color: var(--brand);
+}
+
+/* =====================
+   FILTERBAR
+   ===================== */
+.filterbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  width: 100%;
+  margin: 0 auto 32px;
+  padding: 24px 20px;
+
+  background: var(--bg);
+  border-radius: var(--radius);
+}
+
+.filterbar select,
+.clear-btn {
+  min-height: 44px;
+  padding: 10px 40px 10px 16px;
+
+  background: var(--bg-card);
+  color: var(--text);
+
+  border: 1px solid var(--secondary-dark);
+  border-radius: 14px;
+
+  font-size: var(--text-small);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.filterbar select {
+  appearance: none;
+  -webkit-appearance: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='10' viewBox='0 0 16 10'%3E%3Cpath d='M0 0H16L8 10Z' fill='%23D5D2D2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 14px 10px;
+}
+
+.clear-btn {
+  padding-inline: 18px;
+  background-color: rgb(240, 240, 240);
+  border-color: var(--brand);
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.filterbar select:hover,
+.clear-btn:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+.filterbar select:focus-visible,
+.clear-btn:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* =====================
+   GAME LIST
+   ===================== */
+#game-list {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  #game-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    padding: 2rem 1rem;
+  }
 }
 
 /* =====================
    GAME CARDS
    ===================== */
 .game-card {
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
   height: 320px;
+
+  padding: 0;
+
   background: var(--bg-card);
+  color: inherit;
+
+  border: none;
   border-radius: 16px;
   box-shadow: var(--shadow);
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
   overflow: hidden;
-
-  border: none;
-  padding: 0px;
 
   font: inherit;
-  color: inherit;
   text-align: left;
-
-  cursor: pointer;
-}
-
-.game-card:hover {
-  transform: scale(1.0);
-  box-shadow: var(--shadow-lg);
-  background-color: rgb(240, 240, 240);
-}
-
-.game-card:focus {
-  outline: 3px solid var(--secondary);
-  outline-offset: 2px;
-}
-
-.game-poster {
-  width: 100%;
-  height: 180px;
-
-  object-fit: contain;
-  display: block;
-
-  transition: var(--transition);
-
-  border-bottom: 1px solid #ccc;
-}
-
-.game-card:hover .game-poster {
-  transform: scale(1.05);
-}
-
-.game-info {
-  padding: 1.5rem;
-  position: relative;
-}
-
-.game-info h3 {
-  font-size: clamp(1.125rem, 2vw, 1.375rem);
-  font-weight: 600;
-  color: var(--text);
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-
-  gap: 0.5rem;
-}
-
-.game-genre {
-  color: black;
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
-}
-
-.game-rating {
-  color: var(--text-light);
-  font-weight: 600;
-
-  display: flex;
-  gap: 0.25rem;
-
-  position: absolute;
-  bottom: 2.5rem;
-  right: 1.5rem;
-
-  margin-bottom: 0;
-}
-
-/* =====================
-   MOVIE DIALOG
-   ===================== */
-dialog#game-dialog {
-  border: none;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
-  padding: 0;
-
-  max-width: min(95vw, 1000px);
-  max-height: 90vh;
-
-  background: var(--bg-card);
-  color: var(--text);
-
-  overflow: hidden;
-
-  position: relative;
-  margin: auto;
-}
-
-dialog#game-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
-}
-
-#close-dialog {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--text-light);
-
-  border: none;
-  border-radius: 50%;
-
-  width: 2.5rem;
-  height: 2.5rem;
-
-  font-size: 1.25rem;
-
   cursor: pointer;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transition: var(--transition);
-
-  z-index: 10;
+  transition:
+    box-shadow var(--transition),
+    background-color var(--transition),
+    transform var(--transition);
 }
 
-#close-dialog:hover {
-  background: var(--secondary);
-  color: white;
-  transform: scale(1.1);
-}
-
-#dialog-content {
-  padding: 2rem;
-
-  display: grid;
-  grid-template-columns: minmax(250px, 1fr) 2fr;
-
-  gap: 2rem;
-  align-items: start;
-
-  overflow-y: auto;
-  max-height: 90vh;
-}
-
-@media (max-width: 768px) {
-  #dialog-content {
-    grid-template-columns: 1fr;
-    padding: 1.5rem;
-    gap: 1.5rem;
-    text-align: center;
-  }
-}
-
-#dialog-content img.game-poster {
-  width: 100%;
-  height: auto;
-  max-height: 500px;
-
-  object-fit: cover;
-
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-@media (max-width: 768px) {
-  #dialog-content img.game-poster {
-    max-width: 300px;
-    margin: 0 auto;
-  }
-}
-
-.dialog-details {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-#dialog-content h2 {
-  font-size: var(--text-medium);
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.2;
-  margin: 0 0 1rem 0;
-}
-
-#dialog-content .movie-year {
-  display: inline-block;
-  background: var(--secondary-light);
-  color: var(--primary);
-
-  padding: 0.25rem 0.75rem;
-
-  border-radius: 0.5rem;
-
-  margin-left: 0.5rem;
-
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-#dialog-content p {
-  color: var(--text-light);
-  line-height: 1.6;
-  margin: 0 0 1rem 0;
-}
-
-#dialog-content p strong {
-  color: var(--text);
-  font-weight: 600;
-}
-
-#dialog-content .movie-genre {
-  color: #5b090a;
-  font-weight: 500;
-  font-size: 1.1rem;
-}
-
-#dialog-content .movie-rating {
-  color: var(--text-light);
-  font-weight: 600;
-  font-size: 1.125rem;
-
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.card-image {
-    position: relative;
-}
-
-.rating {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    z-index: 2;
-}
-
-@media (max-width: 768px) {
-  #dialog-content .game-rating {
-    justify-content: center;
-  }
-}
-
-.game-description {
-  color: var(--text) !important;
-  font-size: 1.1rem !important;
-  line-height: 1.7 !important;
-
-  margin-top: 1rem !important;
-
-  padding: 1rem;
-
-  background: var(--secondary-light);
-
-  border-radius: var(--radius);
-  border-left: 4px solid var(--secondary);
-
-  font-style: italic;
-}
-
-/* =====================
-   RESPONSIVE
-   ===================== */
 @media (min-width: 600px) {
-  #game-list {
-    display: grid;
-    grid-template-columns:
-      repeat(auto-fit, minmax(250px, 1fr));
-
-    gap: 3rem;
-    padding: 3rem 3rem;
-  }
-
   .game-card {
     max-width: 350px;
     margin: 0 auto;
   }
-
 }
 
-/* =====================
-   MOBIL
-   ===================== */
-@media (max-width: 599px) {
-
-  /* Mere plads under den fixed header */
-  main {
-    max-width: 100%;
-    padding: 7rem 1rem 2rem;
-  }
-
-  /* Header */
-  header {
-    padding: 0.75rem 1rem;
-  }
-
-  header h1 {
-    font-size: var(--text-large);
-  }
-
-  header h2 {
-    font-size: var(--text-medium);
-  }
-
-  /* Søgefelt */
-  .searchbar-container {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-
-  .searchbar-container #search-input {
-    width: 100%;
-    max-width: none;
-    min-height: 44px;
-  }
-
-  /* Filtre */
-  .filterbar {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-
-    width: 100%;
-    padding: 16px 0;
-    margin-bottom: 1.5rem;
-  }
-
-  .filterbar select,
-  .clear-btn {
-    width: 100%;
-    min-width: 0;
-    min-height: 44px;
-
-    padding: 10px 36px 10px 12px;
-    font-size: 14px;
-  }
-
-  /* Spiloversigten */
-  #game-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    width: 100%;
-    padding: 1rem 0;
-  }
-
-  /* Cards */
-  .game-card {
-    width: 100%;
-    max-width: none;
-    height: 320px;
-    margin: 0;
-  }
-
-  .game-poster {
-    height: 180px;
-  }
-
-  .game-info {
-    padding: 1.25rem;
-  }
-
-  .game-info h3 {
-    font-size: 1.2rem;
-  }
-
-  .game-rating {
-    right: 1.25rem;
-  }
-
-  /* Dialog */
-  dialog#game-dialog {
-    width: calc(100% - 2rem);
-    max-width: none;
-    max-height: 90vh;
-  }
-
-  #dialog-content {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 3.5rem 1rem 1rem;
-    text-align: left;
-  }
-
-  #dialog-content img.game-poster {
-    width: 100%;
-    max-width: 280px;
-    height: auto;
-    margin: 0 auto;
-    object-fit: contain;
-  }
+.game-card:hover {
+  box-shadow: var(--shadow-lg);
+  background-color: rgb(248, 248, 248);
 }
 
-/* =====================
-   MOBIL - 390px
-   ===================== */
-@media (max-width: 390px) {
-
-  main {
-    max-width: 100%;
-    padding: 3rem 2rem 3rem;
-  }
-
-  header {
-    padding: 0.75rem 1rem;
-  }
-
-  header h1 {
-    font-size: var(--text-large);
-  }
-
-  header h2 {
-    font-size: var(--text-small);
-  }
-
-  .searchbar-container {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-
-  .searchbar-container #search-input {
-    width: 100%;
-    max-width: none;
-    min-height: 44px;
-  }
-
-  .filterbar {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-
-    width: 80%;
-    padding: 16px 0;
-    margin-bottom: 1.5rem;
-  }
-
-  .filterbar select,
-  .clear-btn {
-    width: 100%;
-    min-width: 0;
-    min-height: 44px;
-
-    padding: 10px 36px 10px 12px;
-    font-size: 14px;
-  }
-
-  #game-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    width: 100%;
-    padding: 1rem 0;
-  }
-
-  .game-card {
-    width: 100%;
-    max-width: none;
-    height: 320px;
-    margin: 0;
-  }
-
-  .game-poster {
-    height: 180px;
-  }
-
-  .game-info {
-    padding: 1.25rem;
-  }
-
-  .game-info h3 {
-    font-size: 1.2rem;
-  }
-
-  .game-rating {
-    right: 1.25rem;
-  }
-
-  dialog#game-dialog {
-    width: calc(100% - 2rem);
-    max-width: none;
-    max-height: 90vh;
-  }
-
-  #dialog-content {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 3.5rem 1rem 1rem;
-    text-align: left;
-  }
-
-  #dialog-content img.game-poster {
-    width: 100%;
-    max-width: 280px;
-    height: auto;
-    margin: 0 auto;
-    object-fit: contain;
-  }
+.game-card:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
 }
 
-/* Focus styles for keyboard navigation */
-.game-card:focus-visible,
-#close-dialog:focus-visible {
-  outline: 3px solid var(--text-light);
-  outline-offset: 1px;
+.game-poster {
+  display: block;
+
+  width: 100%;
+  height: 180px;
+
+  object-fit: contain;
+
+  background: white;
+  border-bottom: 1px solid #ccc;
+
+  transition: transform var(--transition);
 }
 
-label {
+.game-card:hover .game-poster {
+  transform: scale(1.03);
+}
+
+.game-info {
+  position: relative;
+  flex: 1;
+
+  min-height: 140px;
+  padding: 1.25rem 1.5rem;
+}
+
+.game-info h3 {
+  margin: 0 0 0.15rem;
+
+  color: var(--text);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.game-info p {
+  margin: 0;
+}
+
+.game-genre {
+  margin-bottom: 0.75rem;
+
+  color: black;
+  font-size: 0.9rem;
+}
+
+.game-rating {
   position: absolute;
+  right: 1.5rem;
+  bottom: 1.15rem;
 
-  width: 1px;
-  height: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 
-  padding: 0;
-  margin: -1px;
+  margin: 0;
 
-  overflow: hidden;
-
-  clip: rect(0, 0, 0, 0);
-
-  white-space: nowrap;
-
-  border: 0;
+  color: var(--brand);
+  font-weight: 700;
 }
 
-
 /* =====================
-   GAME DIALOG - STYLING
+   DIALOG / UNDERSIDE
    ===================== */
-
 dialog#game-dialog {
-  width: min(900px, 90vw);
-  max-height: 90vh;
+  position: fixed;
+  inset: 0;
 
-  border: none;
-  border-radius: 22px;
+  width: min(900px, calc(100% - 2rem));
+  max-width: 900px;
+  max-height: min(90dvh, 800px);
 
+  margin: auto;
   padding: 0;
 
   background: white;
+  color: var(--text);
 
+  border: none;
+  border-radius: 22px;
   box-shadow: var(--shadow-lg);
 
   overflow: hidden;
@@ -771,29 +366,19 @@ dialog#game-dialog::backdrop {
   backdrop-filter: blur(6px);
 }
 
-
-/* =====================
-   DIALOG CONTENT
-   ===================== */
-
 #dialog-content {
   display: grid;
-  grid-template-columns: 320px 1fr;
-
+  grid-template-columns: 320px minmax(0, 1fr);
+  align-items: center;
   gap: 3rem;
 
-  align-items: center;
-
+  width: 100%;
+  max-height: min(90dvh, 800px);
   padding: 3rem;
 
-  max-height: 90vh;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
-
-
-/* =====================
-   DIALOG IMAGE
-   ===================== */
 
 #dialog-content img.game-poster {
   width: 100%;
@@ -802,163 +387,378 @@ dialog#game-dialog::backdrop {
   object-fit: contain;
 
   background: #fff;
-
+  border: none;
   border-radius: 16px;
-
   box-shadow: var(--shadow);
 }
-
-
-/* =====================
-   STYLING AF UNDERSIDE
-   ===================== */
 
 .dialog-details {
   display: flex;
   flex-direction: column;
+  gap: 0.75rem;
 
-  gap: 1rem;
+  min-width: 0;
 }
-
-
-/* Titel */
 
 #dialog-content h2,
 #dialog-content h3 {
-  color: var(--text);
+  margin: 0 0 0.25rem;
 
+  color: var(--text);
   font-size: 2rem;
   font-weight: 700;
-
   line-height: 1.2;
-
-  margin-bottom: 0.25rem;
 }
 
+#dialog-content p {
+  margin: 0;
+  line-height: 1.6;
+}
 
-/* Genre */
+#dialog-content .game-genre,
+#dialog-content .movie-genre {
+  margin: 0 0 0.25rem;
 
-#dialog-content .game-genre {
-  color: #5b090a;
-
+  color: var(--brand);
   font-size: 0.95rem;
   font-weight: 700;
-
-  margin-bottom: 0.75rem;
 }
 
-
-/* Rating */
-
-#dialog-content .game-rating {
+#dialog-content .game-rating,
+#dialog-content .movie-rating {
   position: static;
 
-  color: #5b090a;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 
+  margin: 0 0 0.75rem;
+
+  color: var(--brand);
   font-size: 1.1rem;
   font-weight: 700;
-
-  margin: 0.25rem 0 1rem;
 }
 
-
-/* Beskrivelse */
-
 .game-description {
+  margin: 0 !important;
+  padding: 1.25rem;
+
+  background: var(--secondary-light);
   color: var(--text) !important;
+
+  border-left: 4px solid var(--brand);
+  border-radius: 12px;
 
   font-size: 1.05rem !important;
   line-height: 1.7 !important;
-
-  margin: 0 !important;
-
-  padding: 1.25rem;
-
-  background: rgb(255, 232, 235);
-
-  border-left: 4px solid #5b090a;
-  border-radius: 12px;
-
   font-style: normal;
 }
-
 
 /* =====================
    CLOSE BUTTON
    ===================== */
-
 #close-dialog {
   position: absolute;
-
   top: 1rem;
   right: 1rem;
 
-  width: auto;
-  height: auto;
+  z-index: 20;
 
+  min-width: 44px;
+  min-height: 44px;
   padding: 0.55rem 1rem;
 
   background: white;
-  color: #5b090a;
+  color: var(--brand);
 
-  border: 2px solid #5b090a;
+  border: 2px solid var(--brand);
   border-radius: 999px;
 
   font-size: 1rem;
   font-weight: 600;
 
   cursor: pointer;
-
   transition: var(--transition);
-
-  z-index: 10;
 }
 
 #close-dialog:hover {
-  background: #5b090a;
+  background: var(--brand);
   color: white;
-
-  transform: none;
 }
 
+#close-dialog:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+}
 
 /* =====================
-   MOBILE - 390px
+   ACCESSIBILITY HELPERS
    ===================== */
+label {
+  position: absolute;
 
-@media (max-width: 390px) {
-  dialog#game-dialog {
-    width: calc(100% - 1.5rem);
-    max-height: 92vh;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
 
-    border-radius: 16px;
-  }
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
 
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =====================
+   TABLET / SMALL DESKTOP
+   ===================== */
+@media (max-width: 768px) {
   #dialog-content {
     grid-template-columns: 1fr;
-
+    align-items: start;
     gap: 1.5rem;
 
-    padding: 4rem 1.25rem 1.5rem;
+    padding: 4rem 1.5rem 1.5rem;
   }
 
   #dialog-content img.game-poster {
-    height: 220px;
+    width: 100%;
+    max-width: 300px;
+    height: 260px;
+    margin: 0 auto;
   }
 
   #dialog-content h2,
   #dialog-content h3 {
-    font-size: 1.6rem;
+    font-size: 1.75rem;
+  }
+}
+
+/* =====================
+   MOBILE
+   ===================== */
+@media (max-width: 599px) {
+  header {
+    padding: 1.25rem 1rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  header h2 {
+    margin-top: 0.4rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+  }
+
+  main {
+    max-width: 100%;
+    padding: 2rem 1rem 2rem;
+  }
+
+  .searchbar-container {
+    margin-bottom: 1rem;
+  }
+
+  .searchbar-container #search-input {
+    max-width: none;
+    min-height: 48px;
+  }
+
+  .filterbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+
+    width: 100%;
+    margin: 0 0 2rem;
+    padding: 0;
+  }
+
+  .filterbar select,
+  .clear-btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+
+    padding: 0.7rem 2rem 0.7rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  #game-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    width: 100%;
+    padding: 0;
+  }
+
+  .game-card {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: 285px;
+    margin: 0;
+  }
+
+  .game-poster {
+    height: 170px;
+  }
+
+  .game-info {
+    min-height: 115px;
+    padding: 1rem 1.25rem;
+  }
+
+  .game-info h3 {
+    font-size: 1.25rem;
+  }
+
+  .game-rating {
+    right: 1.25rem;
+    bottom: 1rem;
+  }
+
+
+  dialog#game-dialog {
+    width: calc(100% - 1rem);
+    max-height: calc(100dvh - 1rem);
+    border-radius: 16px;
+  }
+
+  #dialog-content {
+    max-height: calc(100dvh - 1rem);
+    padding: 3.8rem 1rem 1.25rem;
+  }
+
+  #dialog-content img.game-poster {
+    max-width: 210px;
+    height: 175px;
+  }
+
+  #dialog-content h2,
+  #dialog-content h3 {
+    font-size: 1.4rem;
+  }
+
+  /* Dialog stays in the current viewport, not at page top */
+  dialog#game-dialog {
+    position: fixed;
+    inset: 0;
+
+    width: calc(100% - 1.5rem);
+    max-width: 500px;
+    max-height: calc(100dvh - 1.5rem);
+
+    margin: auto;
+
+    border-radius: 18px;
+  }
+
+  #dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    width: 100%;
+    max-height: calc(100dvh - 1.5rem);
+
+    gap: 1.1rem;
+    padding: 4rem 1.25rem 1.5rem;
+
+    overflow-y: auto;
+    text-align: left;
+  }
+
+  #dialog-content img.game-poster {
+    flex: 0 0 auto;
+
+    width: 100%;
+    max-width: 240px;
+    height: 200px;
+
+    margin: 0 auto;
+
+    object-fit: contain;
+    box-shadow: none;
+  }
+
+  .dialog-details {
+    width: 100%;
+    gap: 0.6rem;
+  }
+
+  #dialog-content h2,
+  #dialog-content h3 {
+    margin: 0;
+    font-size: 1.55rem;
+  }
+
+  #dialog-content .game-genre,
+  #dialog-content .movie-genre {
+    margin-bottom: 0;
+  }
+
+  #dialog-content .game-rating,
+  #dialog-content .movie-rating {
+    margin: 0;
   }
 
   .game-description {
-    padding: 1rem;
+    width: 100%;
+    padding: 1rem !important;
 
     font-size: 1rem !important;
+    line-height: 1.55 !important;
+
+    border-left-width: 3px;
   }
 
   #close-dialog {
     top: 0.75rem;
     right: 0.75rem;
+
+    min-height: 44px;
+    padding: 0.45rem 0.9rem;
   }
 }
+
+/* =====================
+   SMALL MOBILE - 390px
+   ===================== */
+@media (max-width: 390px) {
+  main {
+    padding-inline: 0.85rem;
+  }
+
+  .filterbar {
+    grid-template-columns: 1fr;
+  }
+
+  dialog#game-dialog {
+    width: calc(100% - 1rem);
+    max-height: calc(100dvh - 1rem);
+    border-radius: 16px;
+  }
+
+  #dialog-content {
+    max-height: calc(100dvh - 1rem);
+    padding: 3.8rem 1rem 1.25rem;
+  }
+
+  #dialog-content img.game-poster {
+    max-width: 210px;
+    height: 175px;
+  }
+
+  #dialog-content h2,
+  #dialog-content h3 {
+    font-size: 1.4rem;
+  }
+}
+
+
+
